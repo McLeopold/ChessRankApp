@@ -24,7 +24,7 @@
             console.log(`firebase signup for ${this.email}`);
             firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
               (user) => {
-                this.$router.replace('helloworld')
+                this.$router.replace('games')
               },
               (err) => {
                 console.log("Account failure: " + err);

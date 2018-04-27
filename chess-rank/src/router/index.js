@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Games from '@/components/Games'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import firebase from 'firebase'
@@ -28,9 +28,9 @@ let router = new Router({
       component: SignUp
     },
     {
-      path: '/helloworld',
-      name: 'HelloWorld',
-      component: HelloWorld,
+      path: '/games',
+      name: 'Games',
+      component: Games,
       meta: {
         requiresAuth: true
       }
@@ -43,7 +43,7 @@ router.beforeEach((to, from, next) => {
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
   if (requiresAuth && !currentUser) next('login')
-  else if (!requiresAuth && currentUser) next ('helloworld')
+  else if (!requiresAuth && currentUser) next ('games')
   else next()
 })
 

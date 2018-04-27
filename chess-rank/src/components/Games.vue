@@ -1,6 +1,11 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <ul>
+      <li v-for="game in games">
+        {{game}}
+      </li>
+    </ul>
     <button v-on:click="logout">Logout</button>
   </div>
 </template>
@@ -9,18 +14,29 @@
 import firebase from 'firebase';
 
 export default {
-  name: 'HelloWorld',
+  name: 'Games',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      games: []
     }
   },
   methods: {
-    logout: function() {
+    logout: function () {
       firebase.auth().signOut().then(() => {
         this.$router.replace('login')
       })
+    },
+    getGames: function () {
+      firebase.database().ref('games').on('child_added',
+        (snapshot) => {
+          this.games.push(snapshot.val());
+        }
+      );
     }
+  },
+  created () {
+    this.getGames();
   }
 }
 </script>

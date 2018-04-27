@@ -23,7 +23,7 @@
             signIn: function () {
                 firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
                     (user) => {
-                        this.$router.replace('helloworld')
+                        this.$router.replace('games')
                     },
                     (err) => {
                         console.log('Opps: ' + err.message);

@@ -22,3 +22,4 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
 });
 
+window.fb = firebase;
