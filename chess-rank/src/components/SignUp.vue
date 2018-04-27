@@ -23,10 +23,10 @@
           signUp: function () {
             console.log(`firebase signup for ${this.email}`);
             firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-              function (user) {
-                console.log("Account created");
+              (user) => {
+                this.$router.replace('helloworld')
               },
-              function (err) {
+              (err) => {
                 console.log("Account failure: " + err);
               }
             );
