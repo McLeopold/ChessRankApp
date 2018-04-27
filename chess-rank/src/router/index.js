@@ -3,15 +3,19 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
+import firebase from 'firebase'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/helloworld',
-      name: 'HelloWorld',
-      component: HelloWorld
+      path: '*',
+      redirect: '/login'
+    },
+    {
+      path: '/',
+      redirect: '/login'
     },
     {
       path: '/login',
@@ -22,6 +26,14 @@ export default new Router({
       path: '/sign-up',
       name: 'SignUp',
       component: SignUp
+    },
+    {
+      path: '/helloworld',
+      name: 'HelloWorld',
+      component: HelloWorld,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })
