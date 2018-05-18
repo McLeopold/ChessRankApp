@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Games from '@/components/Games'
+import AddGame from '@/components/AddGame'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import firebase from 'firebase'
@@ -31,6 +32,14 @@ let router = new Router({
       path: '/games',
       name: 'Games',
       component: Games,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/add-game',
+      name: 'AddGame',
+      component: AddGame,
       meta: {
         requiresAuth: true
       }
