@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <ul>
-      <li v-for="game in games">
+      <li v-for="(game, gameId) in games">
         {{game}}
       </li>
     </ul>
@@ -18,7 +18,7 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      games: []
+      games: {}
     }
   },
   methods: {
@@ -28,9 +28,24 @@ export default {
       })
     },
     getGames: function () {
-      firebase.database().ref('games').on('child_added',
+      var that = this;
+      var games = firebase.database().ref('games');
+      games.on('child_added',
         (snapshot) => {
-          this.games.push(snapshot.val());
+          console.log('child_added', snapshot.key);
+          that.$set(that.games, snapshot.key, snapshot.val());
+        }
+      );
+      games.on('child_changed',
+        (snapshot) => {
+          console.log('child_changed', snapshot.key);
+          that.$set(that.games, snapshot.key, snapshot.val());
+        }
+      );
+      games.on('child_removed',
+        (snapshot) => {
+          console.log('child_removed', snapshot.key);
+          that.$delete(that.games, snapshot.key);
         }
       );
     }
