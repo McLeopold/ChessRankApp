@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import firebase from 'firebase'
 import config from './config'
+import Rank from './Rank'
 
 Vue.config.productionTip = false
 
@@ -23,7 +24,9 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 window.fb = firebase;
+window.Rank = Rank;
 
+/*
 var Rank = {};
 
 var ranks = firebase.database().ref('/ranks');
@@ -51,3 +54,4 @@ Rank.addUser = function (rankName, uid) {
 window.Rank = Rank;
 
 
+*/
