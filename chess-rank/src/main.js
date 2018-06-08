@@ -50,15 +50,4 @@ Rank.addUser = function (rankName, uid) {
 
 window.Rank = Rank;
 
-function a() {}
-this = 'bob'
-var a = function () { this == obj }
-var b = () => { this = 'bob' }
-
-var obj = { f_a: a, f_b: b }
-
-obj.f_a()
-obj.f_b()
-
-
 
