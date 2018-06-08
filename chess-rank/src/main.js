@@ -7,7 +7,10 @@ import firebase from 'firebase'
 import config from './config'
 import Rank from './Rank'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+Vue.prototype.$fbSet = function (target, RankType, snapshot) {
+  this.$set(target, snapshot.key, RankType(snapshot.val(), snapshot.key));
+};
 
 let app;
 firebase.initializeApp(config);
