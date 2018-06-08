@@ -32,19 +32,19 @@ export default {
       var games = firebase.database().ref('games');
       games.on('child_added',
         (snapshot) => {
-          console.log('child_added', snapshot.key);
+          //console.log('child_added', snapshot.key);
           that.$set(that.games, snapshot.key, snapshot.val());
         }
       );
       games.on('child_changed',
         (snapshot) => {
-          console.log('child_changed', snapshot.key);
+          //counsole.log('child_changed', snapshot.key);
           that.$set(that.games, snapshot.key, snapshot.val());
         }
       );
       games.on('child_removed',
         (snapshot) => {
-          console.log('child_removed', snapshot.key);
+          //console.log('child_removed', snapshot.key);
           that.$delete(that.games, snapshot.key);
         }
       );

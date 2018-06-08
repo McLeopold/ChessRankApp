@@ -23,3 +23,42 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 window.fb = firebase;
+
+var Rank = {};
+
+var ranks = firebase.database().ref('/ranks');
+Rank.createRank = function (name) {
+  var uid = firebase.auth().currentUser.uid;
+  var rankObj = {
+    owner: uid,
+    type: 'ELO',
+    users: {},
+    games: {},
+  };
+  rankObj.users[uid] = {
+    skill: 1500
+  }
+  console.log(rankObj);
+  ranks.child(name).set(rankObj);
+}
+
+Rank.addUser = function (rankName, uid) {
+  ranks.child(rankName).child('users').child(uid).set({
+    rank: 1500
+  });
+}
+
+window.Rank = Rank;
+
+function a() {}
+this = 'bob'
+var a = function () { this == obj }
+var b = () => { this = 'bob' }
+
+var obj = { f_a: a, f_b: b }
+
+obj.f_a()
+obj.f_b()
+
+
+
